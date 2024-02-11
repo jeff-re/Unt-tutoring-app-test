@@ -18,8 +18,9 @@
 
         <%--<h2 id="title"><%: Title %>.</h2>--%>
         <div class="col-md-8">
+            <div class="container">
             <section id="loginForm">
-                <div class="row justify-content-center" style="background-color:grey">
+                <div class="row " style="border: medium double #000000; padding: 10px; background-color:grey">
                     
                     <h4>Use a local account to log in.</h4>
                     <hr />
@@ -28,7 +29,8 @@
                             <asp:Literal runat="server" ID="FailureText" />
                         </p>
                     </asp:PlaceHolder>
-                    <div class="row">
+
+                    <div class="row" style="text-align: center">
                      
                         <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 col-form-label">Email</asp:Label>
                         <div class="col-md-10">
@@ -37,6 +39,7 @@
                                 CssClass="text-danger" ErrorMessage="The email field is required." />
                         </div>
                     </div>
+                       
                     <div class="row">
                         <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 col-form-label">Password</asp:Label>
                         <div class="col-md-10">
@@ -68,6 +71,7 @@
                     --%>
                 </p>
             </section>
+                </div>
         </div>
 
         <%--<div class="col-md-4">
