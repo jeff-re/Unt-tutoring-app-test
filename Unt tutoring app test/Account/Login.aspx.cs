@@ -78,5 +78,10 @@ namespace Unt_tutoring_app_test.Account
                 Response.End();
             }
         }
+
+        protected void Email_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

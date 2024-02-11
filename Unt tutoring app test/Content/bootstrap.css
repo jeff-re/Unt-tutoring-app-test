@@ -161,6 +161,7 @@ h6, .h6 {
 p {
   margin-top: 0;
   margin-bottom: 1rem;
+    width: 662px;
 }
 
 abbr[title] {
@@ -677,7 +678,7 @@ progress {
 }
 .row > * {
   flex-shrink: 0;
-  width: 100%;
+  width: 43%;
   max-width: 100%;
   padding-right: calc(var(--bs-gutter-x) * 0.5);
   padding-left: calc(var(--bs-gutter-x) * 0.5);
