@@ -1,12 +1,20 @@
 ﻿<%@ Page Title="Log in" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Unt_tutoring_app_test.Account.Login" Async="true" %>
+
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+
+
     <main aria-labelledby="title">
+            <style>
+
+
+    </style>
         <h2 id="title"><%: Title %>.</h2>
         <div class="col-md-8">
             <section id="loginForm">
                 <div class="row">
+                    
                     <h4>Use a local account to log in.</h4>
                     <hr />
                     <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
@@ -15,12 +23,14 @@
                         </p>
                     </asp:PlaceHolder>
                     <div class="row">
+                        <div class="col align-self-center">
                         <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 col-form-label">Email</asp:Label>
                         <div class="col-md-10">
                             <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
                                 CssClass="text-danger" ErrorMessage="The email field is required." />
                         </div>
+                    </div>
                     </div>
                     <div class="row">
                         <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 col-form-label">Password</asp:Label>
@@ -54,10 +64,10 @@
             </section>
         </div>
 
-        <div class="col-md-4">
+        <%--<div class="col-md-4">
             <section id="socialLoginForm">
                 <uc:OpenAuthProviders runat="server" ID="OpenAuthLogin" />
             </section>
-        </div>
+        </div>--%>
     </main>
 </asp:Content>
