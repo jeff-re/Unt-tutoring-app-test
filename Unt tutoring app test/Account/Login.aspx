@@ -6,14 +6,20 @@
 
 
     <main aria-labelledby="title">
-            <style>
+       <style>
+           
+    body {
+      background-image: url('UNTpic2.png');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+  </style>
 
-
-    </style>
-        <h2 id="title"><%: Title %>.</h2>
+        <%--<h2 id="title"><%: Title %>.</h2>--%>
         <div class="col-md-8">
             <section id="loginForm">
-                <div class="row">
+                <div class="row justify-content-center" style="background-color:grey">
                     
                     <h4>Use a local account to log in.</h4>
                     <hr />
@@ -23,14 +29,13 @@
                         </p>
                     </asp:PlaceHolder>
                     <div class="row">
-                        <div class="col align-self-center">
+                     
                         <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 col-form-label">Email</asp:Label>
                         <div class="col-md-10">
                             <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
                                 CssClass="text-danger" ErrorMessage="The email field is required." />
                         </div>
-                    </div>
                     </div>
                     <div class="row">
                         <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 col-form-label">Password</asp:Label>
@@ -52,6 +57,7 @@
                             <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-outline-dark" />
                         </div>
                     </div>
+                    <%--end of div class--%>
                 </div>
                 <p>
                     <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register as a new user</asp:HyperLink>
