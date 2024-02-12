@@ -20,7 +20,7 @@
         <div class="col-md-8">
             <div class="container">
             <section id="loginForm">
-                <div class="row " style="border: medium double #000000; padding: 10px; background-color:grey">
+                <div class="row " style="border: medium double #000000; padding: 10px; background-color:grey;">
                     
                     <h4>Use a local account to log in.</h4>
                     <hr />
