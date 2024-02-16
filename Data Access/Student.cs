@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataContract
+namespace Data_Access
 {
-    public class Trial
+    internal class StudentData
     {
     }
 }
