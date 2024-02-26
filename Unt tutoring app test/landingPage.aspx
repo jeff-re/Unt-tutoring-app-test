@@ -21,13 +21,17 @@
     <table align="left" style="height:150px" border="1" bgcolor="lightgray">
       <tr align="center">
         <td align="center">
-          <asp:Button ID="btnContactUs" runat="server" Text="CONTACT US" OnClientClick="window.open('contact us-page.html', '_blank')" Width="100%" Height="100%" />
+
+            <asp:Button ID="btnContactUs" runat="server" Text="CONTACT US" OnClick="btnContactUs_Click" Width="100%" Height="100%" />
+            <%--          <asp:Button ID="btnContactUs" runat="server" Text="CONTACT US" OnClientClick="window.open('contact us-page.html', '_blank')" Width="100%" Height="100%" />--%>
         </td>
       </tr>
 
       <tr>
         <td>
-          <asp:Button ID="btnHoursOfOperation" runat="server" Text="HOURS OF OPERATION" OnClientClick="window.open('hours-of-operation.html', '_blank')" Width="100%" Height="100%" />
+
+            <asp:Button ID="BtnHoursOfOperation" runat="server" Text="HOURS OF OPERATION" OnClick="BtnHoursOfOperation_Click" Width="100%" Height="100%" />
+            <%--          <asp:Button ID="btnHoursOfOperation" runat="server" Text="HOURS OF OPERATION" OnClientClick="window.open('hours-of-operation.html', '_blank')" Width="100%" Height="100%" />--%>
         </td>
       </tr>
     </table>
@@ -35,8 +39,7 @@
     <table align="center" style="height:400px" border="1" bgcolor="lightgray">
       <tr>
         <td align="center">
-          <h1 style="color:darkgreen;">University of North Texas</h1>
-          <h2>Eagle Tutoring</h2>
+          <h1 style="color:darkgreen;">University of North Texasle Tutoring</h1>
         </td>
       </tr>
 

@@ -33,13 +33,13 @@ namespace Unt_tutoring_app_test
         protected global::System.Web.UI.WebControls.Button btnContactUs;
 
         /// <summary>
-        /// btnHoursOfOperation control.
+        /// BtnHoursOfOperation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnHoursOfOperation;
+        protected global::System.Web.UI.WebControls.Button BtnHoursOfOperation;
 
         /// <summary>
         /// btnStudentLogin control.

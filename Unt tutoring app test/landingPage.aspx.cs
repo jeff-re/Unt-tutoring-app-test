@@ -39,5 +39,17 @@ namespace Unt_tutoring_app_test
         {
             Response.Redirect("~/Account/Login", true);
         }
+
+        protected void btnContactUs_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/ContactUs.aspx", true);
+
+        }
+
+        protected void BtnHoursOfOperation_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/HoursOfOperation", true);
+
+        }
     }
 }
