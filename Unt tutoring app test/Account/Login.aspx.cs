@@ -47,7 +47,7 @@ namespace Unt_tutoring_app_test.Account
 
 
                             //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-                            Response.Redirect("/Student");
+                            Response.Redirect("/StudentMain");
 
 
 
