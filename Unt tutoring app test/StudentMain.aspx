@@ -12,6 +12,9 @@
       background-size: cover;
 
     }
+      .auto-style1 {
+          width: 6px;
+      }
   </style>
   <title>Student Schedule</title>
 
@@ -21,16 +24,7 @@
 <body>
 
 
-  <table align="left"  style="height:150px" border=1 bgcolor="lightgray">
-    <tr align="center">
-      <td align="center"> 
-        <button style="width:100%;height:100%;" align="center" onclick="window.open('student-login.html', '_self')">Go Back</button>
-      </td>
-    </tr>
-
-  </table>
-
-  <table align="center"  style="height:400px"  border=1 bgcolor="lightgray">
+  <table align="left"  style="height:400px"  border=1 bgcolor="lightgray">
     <tr>
       <td align="center"> 
         <h1 style="color:rgb(0, 123, 60);">University of North Texas</h1><h2>Eagle Tutoring</h2>
