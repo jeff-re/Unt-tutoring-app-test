@@ -33,7 +33,8 @@ namespace Unt_tutoring_app_test
             var tutorAvailable = new UntTutoringAppTest.DataContract.TutorManageInfo();
             tutorAvailable.AppointDate = Calendar1.SelectedDate;
             tutorAvailable.TutorId = Convert.ToString(Session["UserId"]);
-            var ret = UntTutoringAppTest.DataAccess.TutorManage.Create(tutorAvailable);
+            var ret = UntTutoringAppTest.DataAccess.TutorManage.AddTutorAvailable(tutorAvailable);
+            Response.Redirect(Request.RawUrl);
 
         }
 
