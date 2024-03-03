@@ -188,6 +188,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="HoursOfOperation.aspx" />
+    <Content Include="Images\calender.jpeg" />
+    <Content Include="Images\calender2.png" />
     <Content Include="ManageRole.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -219,9 +221,11 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Account\Web.config" />
     <Content Include="StudentMain.aspx" />
+    <Content Include="Tutormanage.aspx" />
     <Content Include="Unauthorize.aspx" />
     <Content Include="landingPage.aspx" />
     <Content Include="Student.aspx" />
+    <Content Include="WebForm4.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -435,6 +439,13 @@
     <Compile Include="StudentMain.aspx.designer.cs">
       <DependentUpon>StudentMain.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Tutormanage.aspx.cs">
+      <DependentUpon>Tutormanage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tutormanage.aspx.designer.cs">
+      <DependentUpon>Tutormanage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -463,6 +474,13 @@
     <Compile Include="Student.aspx.designer.cs">
       <DependentUpon>Student.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForm4.aspx.cs">
+      <DependentUpon>WebForm4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm4.aspx.designer.cs">
+      <DependentUpon>WebForm4.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -477,6 +495,16 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UntTutoringAppTest.DataAccess\UntTutoringAppTest.DataAccess.csproj">
+      <Project>{de7ae4c9-e16e-4e7d-967a-8f3d39702216}</Project>
+      <Name>UntTutoringAppTest.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UntTutoringAppTest.DataContract\UntTutoringAppTest.DataContract.csproj">
+      <Project>{7cca8bcf-19cd-4c07-ad59-589c02f9fdae}</Project>
+      <Name>UntTutoringAppTest.DataContract</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

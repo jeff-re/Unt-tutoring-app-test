@@ -74,8 +74,8 @@ namespace Unt_tutoring_app_test
 
                 if (Session["UserId"] == null)
                 {
-                    Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-                    Response.Redirect("~/Account/Login", true);
+                    //Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                   // Response.Redirect("~/Account/Login", true);
                 }
                 else
                 {
