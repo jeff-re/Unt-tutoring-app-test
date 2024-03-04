@@ -12,7 +12,7 @@ namespace UntTutoringAppTest.DataAccess
     {
         static readonly string CONNECTION_STRING = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-
+        //test
 
         public static List<DataContract.TimeSlotsInfo> GetAllTimes()
         {
