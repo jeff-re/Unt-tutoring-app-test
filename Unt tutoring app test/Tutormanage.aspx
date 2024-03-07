@@ -21,11 +21,14 @@
         <WeekendDayStyle BackColor="#CCCCFF" />
     </asp:Calendar>
 
-    <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal" HorizontalAlign="Center" Width="564px">
+    <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal" HorizontalAlign="Center" Width="564px" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing">
         <AlternatingRowStyle BackColor="#F7F7F7" />
         <Columns>
             <asp:BoundField DataField="AppointDate" HeaderText="AppointDate" DataFormatString="{0:MM/dd/yyyy}" SortExpression="AppointDate" />
             <asp:BoundField DataField="TimeSlot" HeaderText="TimeSlot" ReadOnly="True" SortExpression="TimeSlot" />
+            <asp:CommandField ButtonType="Button" ShowDeleteButton="True">
+            <ControlStyle BackColor="#4A3C8C" ForeColor="#F7F7F7" />
+            </asp:CommandField>
         </Columns>
         <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
         <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />

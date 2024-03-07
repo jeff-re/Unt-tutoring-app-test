@@ -43,5 +43,15 @@ namespace Unt_tutoring_app_test
             Calendar1.Visible = true;
             
         }
+
+        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+        }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
     }
 }
