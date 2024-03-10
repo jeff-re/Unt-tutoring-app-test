@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -75,6 +76,48 @@ namespace UntTutoringAppTest.DataAccess
             return cmd;
         }
 
+        public static DataTable GetTutorAvailableTimes()
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = connection;
+                    cmd.CommandText = "SELECT ta.Id,ta.AppointDate, ts.TimeStart + ' - ' + ts.TimeEnd As TimeSlot " +
+                        "FROM [dbo].[TutorAvailable] AS ta " +
+                        "INNER JOIN [dbo].[TimeSlots] AS ts " +
+                        " ON ta.TimeSlotId = ts.Id";
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    dt.Load(reader);
+                }
+            }
+            return dt;
+        }
+
+
+        public void UpdateStatus(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = connection;
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("UPDATE dbo.TutorAvailable");
+                    sb.AppendLine("SET IsActive = 0 ");
+                    sb.AppendLine(" WHERE Id = @Id ");
+
+                    cmd.CommandText = sb.ToString();
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+        }
 
 
     }

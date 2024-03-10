@@ -2,6 +2,19 @@
 
 <!DOCTYPE html>
 
+<style>
+    body {
+      background-image: url('UNTpic2.png');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+
+    }
+      .auto-style1 {
+          width: 6px;
+      }
+  </style>
+
 <html lang="en">
 <head runat="server">
     <meta charset="utf-8" />

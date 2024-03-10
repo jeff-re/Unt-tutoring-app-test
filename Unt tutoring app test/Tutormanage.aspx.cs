@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,7 @@ namespace Unt_tutoring_app_test
             {
                 Calendar1.Visible = false;
                 Btn_addDate.Visible = false;
+                GridBindTutorTimes();
 
             }
 
@@ -51,7 +53,17 @@ namespace Unt_tutoring_app_test
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            var rowint = GridView1.DataKeys[e.RowIndex].Value.ToString();
+            int id = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value.ToString());
+            int test = 0;
+        }
 
+        protected void GridBindTutorTimes()
+        {
+            //DataTable dt = DataAccess.DrugData.GetDriverDetails(DriverID, defaultStatus);
+            DataTable dt = UntTutoringAppTest.DataAccess.TutorManage.GetTutorAvailableTimes();
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
         }
     }
 }
