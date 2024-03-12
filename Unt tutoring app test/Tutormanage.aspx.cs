@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Core.Objects;
@@ -18,6 +19,7 @@ namespace Unt_tutoring_app_test
                 Calendar1.Visible = false;
                 Btn_addDate.Visible = false;
                 GridBindTutorTimes();
+                GridBindSubjects();
 
             }
 
@@ -46,17 +48,9 @@ namespace Unt_tutoring_app_test
             
         }
 
-        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
-        {
+        
 
-        }
 
-        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            var rowint = GridView1.DataKeys[e.RowIndex].Value.ToString();
-            int id = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value.ToString());
-            int test = 0;
-        }
 
         protected void GridBindTutorTimes()
         {
@@ -64,6 +58,82 @@ namespace Unt_tutoring_app_test
             DataTable dt = UntTutoringAppTest.DataAccess.TutorManage.GetTutorAvailableTimes();
             GridView1.DataSource = dt;
             GridView1.DataBind();
+        }
+
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+            if (e.CommandName == "Remove")
+            {
+                int TutorAvailableId = Convert.ToInt32(e.CommandArgument);
+                UntTutoringAppTest.DataAccess.TutorManage.UpdateTutorStatus(TutorAvailableId);
+                GridBindTutorTimes();
+
+
+            }
+       
+            
+        }
+
+
+        protected void GridBindSubjects()
+        {
+            var tutor = new UntTutoringAppTest.DataContract.TutorManageInfo();
+            tutor.TutorId = Convert.ToString(Session["UserId"]);
+            DataTable dt = UntTutoringAppTest.DataAccess.TutorManage.GetPreferedSubjects(tutor);
+            if(dt.Rows.Count > 0)
+            {
+                GvPrefered_subject.DataSource = dt;
+                GvPrefered_subject.DataBind();
+            }
+            else
+            {
+                dt.Rows.Add(dt.NewRow());
+                dt.Rows.Add(dt.NewRow());
+                GvPrefered_subject.DataSource = dt;
+                GvPrefered_subject.DataBind();
+    
+                GvPrefered_subject.Rows[0].Cells.Clear();
+                GvPrefered_subject.Rows[0].Cells.Add(new TableCell());
+                GvPrefered_subject.Rows[0].Cells[0].ColumnSpan = dt.Columns.Count;
+                GvPrefered_subject.Rows[0].Cells[0].Text = "Prefered Subjects Not set";
+                GvPrefered_subject.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
+             
+                GvPrefered_subject.Rows[1].Cells.Clear();
+                GvPrefered_subject.Rows[1].Cells.Add(new TableCell());
+                GvPrefered_subject.Rows[1].Cells[0].ColumnSpan = dt.Columns.Count;
+                GvPrefered_subject.Rows[1].Cells[0].Text = "Please add prefered subjects";
+                GvPrefered_subject.Rows[1].Cells[0].HorizontalAlign = HorizontalAlign.Center;
+            
+            }
+           
+        }
+
+        protected void GvPrefered_subject_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "AddNew")
+            {
+                var Tutor = new UntTutoringAppTest.DataContract.TutorManageInfo();
+                var subid = (GvPrefered_subject.FooterRow.FindControl("Ddl_subjects") as DropDownList).SelectedValue;
+                
+                    Tutor.SubjectId = Convert.ToInt32(subid);
+                if (Tutor.SubjectId > 0)
+                {
+                    Tutor.TutorId = Convert.ToString(Session["UserId"]);
+                    var ret = UntTutoringAppTest.DataAccess.TutorManage.CreatePreferedSubject(Tutor);
+                    GridBindSubjects();
+                }
+
+            }
+        }
+
+        protected void GvPrefered_subject_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            var Id = Convert.ToInt32(GvPrefered_subject.DataKeys[e.RowIndex].Value.ToString());
+            UntTutoringAppTest.DataAccess.TutorManage.DeleteSubject(Id);
+            GridBindSubjects();
+
+
         }
     }
 }

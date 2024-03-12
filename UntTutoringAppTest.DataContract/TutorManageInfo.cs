@@ -12,6 +12,7 @@ namespace UntTutoringAppTest.DataContract
         public string TutorId { get; set; }
         public int TimeslotId { get; set; }
         public DateTime AppointDate { get; set; }
+        public int SubjectId { get; set; }
 
     }
 }

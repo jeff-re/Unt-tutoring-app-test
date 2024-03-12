@@ -88,7 +88,8 @@ namespace UntTutoringAppTest.DataAccess
                     cmd.CommandText = "SELECT ta.Id,ta.AppointDate, ts.TimeStart + ' - ' + ts.TimeEnd As TimeSlot " +
                         "FROM [dbo].[TutorAvailable] AS ta " +
                         "INNER JOIN [dbo].[TimeSlots] AS ts " +
-                        " ON ta.TimeSlotId = ts.Id";
+                        " ON ta.TimeSlotId = ts.Id " +
+                        "WHERE ta.IsActive = 1";
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     dt.Load(reader);
@@ -98,7 +99,7 @@ namespace UntTutoringAppTest.DataAccess
         }
 
 
-        public void UpdateStatus(int id)
+        public static void UpdateTutorStatus(int id)
         {
             using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
             {
@@ -118,6 +119,70 @@ namespace UntTutoringAppTest.DataAccess
                 }
             }
         }
+
+
+        public static DataTable GetPreferedSubjects(DataContract.TutorManageInfo tutorId)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = connection;
+                    cmd.CommandText = "SELECT ts.Id, s.SubjectName FROM [dbo].[TutorSubject] AS ts INNER JOIN [dbo].[Subject] AS s ON ts.SubjectID = s.Id";
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    dt.Load(reader);
+                }
+            }
+            return dt;
+        }
+
+        public static int CreatePreferedSubject(DataContract.TutorManageInfo tutorAvailable)
+        {
+
+            using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "INSERT INTO TutorSubject ([TutorId],[SubjectID]) output INSERTED.Id" +
+                        " VALUES (@TutorId,@SubjectID)";
+                    cmd.Parameters.AddWithValue("@TutorId", tutorAvailable.TutorId);
+                    cmd.Parameters.AddWithValue("@SubjectID", tutorAvailable.SubjectId);
+             
+
+                    return (int)cmd.ExecuteScalar();
+                }
+            }
+
+        }
+
+        public static void DeleteSubject(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = connection;
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("DELETE FROM TutorSubject");
+                
+                    sb.AppendLine("WHERE Id = @Id ");
+
+                    cmd.CommandText = sb.ToString();
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+        }
+
+
+
 
 
     }
