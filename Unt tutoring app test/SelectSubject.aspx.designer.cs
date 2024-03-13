@@ -22,14 +22,5 @@ namespace Unt_tutoring_app_test
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GvSubjects;
-
-        /// <summary>
-        /// SqlDataSourceSubjects control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceSubjects;
     }
 }

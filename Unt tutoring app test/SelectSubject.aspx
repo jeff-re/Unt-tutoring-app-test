@@ -12,6 +12,34 @@
       background-size: cover;
 
     }
+    .SubjectLink
+    {
+        text-decoration-line:none;
+    }
+    .SubjectLink:hover
+    {
+       /* color:aquamarine;
+        background-color:brown;*/
+             
+    }
+
+   .GvSubjectLink tr.rowHover:hover
+
+   {
+
+       background-color: darkgreen;
+
+       font-family: Arial;
+
+   }
+
+   table.GvSubjectLink tr:hover 
+   {
+
+       background-color: #fabf85;
+        font-family: Arial;
+   }
+
   </style>
   <title>Student Select Subject</title>
 
@@ -29,14 +57,17 @@
     </tr>
       <tr>
           <td align="center"> 
-          <asp:GridView ID="GvSubjects" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="GvSubjects_RowCommand" CellPadding="4" ForeColor="#333333" GridLines="None" Width="283px" ShowHeader="False">
+          <asp:GridView ID="GvSubjects" CssClass="GvSubjectLink" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="GvSubjects_RowCommand" CellPadding="4" ForeColor="#333333" GridLines="None" Width="283px" ShowHeader="False">
              <%-- <AlternatingRowStyle BackColor="White" />--%>
               <Columns>
                   <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" Visible="false" />
                   <asp:TemplateField HeaderText="SubjectName">
                       <ItemTemplate>
-                          <asp:LinkButton ID="LinkButtonSubjects" Text='<%#Eval("SubjectName") %>' CommandArgument='<%# Eval("Id") %>' CommandName="Remove" runat="server">LinkButton</asp:LinkButton>
+                          <asp:LinkButton ID="LinkButtonSubjects" CssClass="SubjectLink" Text='<%#Eval("SubjectName") %>' CommandArgument='<%# Eval("Id") %>' CommandName="Remove" runat="server">LinkButton</asp:LinkButton>
                       </ItemTemplate>
+
+                     
+                      <ItemStyle Font-Bold="True" HorizontalAlign="Center" VerticalAlign="Middle" BorderStyle="Double" BorderWidth="5px" />
 
                   </asp:TemplateField>
                  <%-- <asp:BoundField DataField="SubjectName" HeaderText="Subjects" SortExpression="SubjectName" ShowHeader="False" >
@@ -48,7 +79,7 @@
               <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
               <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
               <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-              <RowStyle BackColor="lightgray" />
+              <%--<RowStyle BackColor="lightgray" />--%>
               <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
               <SortedAscendingCellStyle BackColor="#F8FAFA" />
               <SortedAscendingHeaderStyle BackColor="#246B61" />
@@ -74,7 +105,6 @@
 
 </html>
 
-              <asp:SqlDataSource ID="SqlDataSourceSubjects" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [Id], [SubjectName] FROM [Subject]"></asp:SqlDataSource>
 
 
 </asp:Content>

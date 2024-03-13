@@ -80,13 +80,15 @@
                 </div>
             </div>
         </nav>
-        <div class="container body-content">
+        <div class="container body-content position-relative">
+            <div class="position-absolute top-0 start-0">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            <hr />
+           <%-- <hr />--%>
             <%--<footer>
                 <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
             </footer>--%>
+                </div>
         </div>
     </form>
     <asp:PlaceHolder runat="server">
