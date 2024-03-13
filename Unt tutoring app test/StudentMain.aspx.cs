@@ -13,5 +13,17 @@ namespace Unt_tutoring_app_test
         {
 
         }
+
+        protected void BtnSchedule_Appointment_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/SelectSubject", true);
+
+        }
+
+        protected void BtnChange_Cancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Tutormanage", true);
+
+        }
     }
 }

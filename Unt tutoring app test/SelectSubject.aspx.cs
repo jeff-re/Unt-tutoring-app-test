@@ -11,7 +11,27 @@ namespace Unt_tutoring_app_test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            GvSubjects.DataSource = UntTutoringAppTest.DataAccess.Appointments.GetSubjects();
+            GvSubjects.DataBind();
+            
+        }
+
+        protected void LinkButtonSubjects_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/SelectTutorAndTime?Id=" + ((LinkButton)sender).Text);
+
+           
+
+
 
         }
+
+        protected void GvSubjects_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int TutorAvailableId = Convert.ToInt32(e.CommandArgument);
+            Response.Redirect("~/SelectTutorAndTime?Id=" + (TutorAvailableId).ToString());
+        }
     }
+
+    
 }

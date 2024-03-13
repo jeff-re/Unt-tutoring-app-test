@@ -27,7 +27,6 @@
         <h1 style="color:rgb(0, 123, 60);">University of North Texas</h1><h2>Eagle Tutoring</h2>
       </td>
     </tr>
-    <p></p>
     <tr>
         <td align="center"> 
           <h1 style="color:rgb(0, 0, 0);">Select Math Tutor</h1>
@@ -35,10 +34,35 @@
       </tr>
     <tr>
       <td align="center">
-        <button style="width:100%;height:100%;" onclick="window.open('math date time.html', '_self')">Mr. Smith</button>
+
+          <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSourceAppData" ForeColor="#333333" GridLines="None">
+              <AlternatingRowStyle BackColor="White" />
+              <Columns>
+                  <asp:BoundField DataField="AppointDate" HeaderText="AppointDate" SortExpression="AppointDate" />
+                  <asp:BoundField DataField="Time" HeaderText="Time" ReadOnly="True" SortExpression="Time" />
+              </Columns>
+              <EditRowStyle BackColor="#2461BF" />
+              <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+              <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+              <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+              <RowStyle BackColor="#EFF3FB" />
+              <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+              <SortedAscendingCellStyle BackColor="#F5F7FB" />
+              <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+              <SortedDescendingCellStyle BackColor="#E9EBEF" />
+              <SortedDescendingHeaderStyle BackColor="#4870BE" />
+          </asp:GridView>
+       
+          <asp:SqlDataSource ID="SqlDataSourceAppData" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT ta.AppointDate,t.TimeStart + ' - ' + t.TimeEnd As Time
+FROM [dbo].[TutorAvailable] AS ta
+INNER JOIN [dbo].[TutorSubject] AS ts
+	ON ta.TutorId = ts.TutorID
+INNER JOIN [dbo].[TimeSlots] AS t
+	ON ta.TimeSlotId = t.Id
+WHERE ts.SubjectID = 1"></asp:SqlDataSource>
+       
       </td>
     </tr>
-  <p></p>
   <tr>
     <td align="center">
       <img

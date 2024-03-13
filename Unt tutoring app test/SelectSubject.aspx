@@ -29,13 +29,13 @@
     </tr>
       <tr>
           <td align="center"> 
-          <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSourceSubjects" CellPadding="4" ForeColor="#333333" GridLines="None" Width="283px" ShowHeader="False">
+          <asp:GridView ID="GvSubjects" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="GvSubjects_RowCommand" CellPadding="4" ForeColor="#333333" GridLines="None" Width="283px" ShowHeader="False">
              <%-- <AlternatingRowStyle BackColor="White" />--%>
               <Columns>
                   <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" Visible="false" />
                   <asp:TemplateField HeaderText="SubjectName">
                       <ItemTemplate>
-                          <asp:LinkButton ID="LinkButtonSubjects" Text='<%#Eval("SubjectName") %>' runat="server">LinkButton</asp:LinkButton>
+                          <asp:LinkButton ID="LinkButtonSubjects" Text='<%#Eval("SubjectName") %>' CommandArgument='<%# Eval("Id") %>' CommandName="Remove" runat="server">LinkButton</asp:LinkButton>
                       </ItemTemplate>
 
                   </asp:TemplateField>

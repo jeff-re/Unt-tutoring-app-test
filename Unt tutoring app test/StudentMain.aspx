@@ -33,13 +33,15 @@
 
     <tr>
       <td align="center">
-        <button style="width:100%;height:100%;" onclick="window.open('student select subject.html', '_self')">Schedule Appointment</button>
+<%--        <button style="width:100%;height:100%;" onclick="window.open('student select subject.html', '_self')">Schedule Appointment</button>--%>
+          <asp:Button style="width:100%;height:100%;" ID="BtnSchedule_Appointment" runat="server" OnClick="BtnSchedule_Appointment_Click" Text="Schedule Appoointment" />
       </td>
     </tr>
 
     <tr>
       <td align="center">
-        <button style="width:100%;height:100%;" onclick="window.open('change or cancel.html', '_self')">Change or Cancel Appointment</button>
+<%--        <button style="width:100%;height:100%;" onclick="window.open('change or cancel.html', '_self')">Change or Cancel Appointment</button>--%>
+          <asp:Button style="width:100%;height:100%;" ID="BtnChange_Cancel" runat="server" OnClick="BtnChange_Cancel_Click" Text="Change or Cancel Appointment" />
       </td>
     </tr>
 <p></p>
