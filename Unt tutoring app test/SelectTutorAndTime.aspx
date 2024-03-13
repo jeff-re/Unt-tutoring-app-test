@@ -21,29 +21,21 @@
 
 <body>
 
-    <table class="table table-borderless table-dark">
+    <div class="container text-left">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-2">
+                1 of 3
+            </div>
+            <div class="col-md-auto">
+                Variable width content
+            </div>
+            <div class="col col-lg-2">
+                3 of 3
+            </div>
+        </div>
+    </div>
 
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-
+    <br />
   <table align="left"  style="height:400px"  border=1 bgcolor="lightgray">
     <tr>
       <td align="center"> 
