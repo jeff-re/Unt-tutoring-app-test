@@ -20,6 +20,19 @@ namespace Unt_tutoring_app_test
             {
                 // Set the default status here
                
+
+            }
+            else
+            {
+                int subjectId = 1;
+                int timeSlotId = Convert.ToInt32(DdlTimes.SelectedValue);
+                string tutorId = DdlTutors.SelectedValue;
+                DateTime selectedDate = Cal_Appoitments.SelectedDate;
+
+
+                DataTable dt = UntTutoringAppTest.DataAccess.Appointments.GetAvailableAppointments(subjectId, timeSlotId, tutorId, selectedDate);
+                GvAppointment.DataSource = dt;
+                GvAppointment.DataBind();
             }
            
 
