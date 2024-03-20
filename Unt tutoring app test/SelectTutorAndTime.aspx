@@ -46,20 +46,20 @@
                                 <OtherMonthDayStyle ForeColor="#999999" />
                                 <SelectedDayStyle BackColor="#333399" ForeColor="White" />
                                 <TitleStyle BackColor="#333399" BorderStyle="Solid" Font-Bold="True" Font-Size="12pt" ForeColor="White" Height="12pt" />
-                                <TodayDayStyle BackColor="#999999" ForeColor="White" />
+                                <TodayDayStyle BackColor="#999999" ForeColor="#999999" />
                             </asp:Calendar>
                         </div>
                     </div>
                     <div class="row justify-content-md-center">
                         <div class="col" style="padding-top:10px">
-                            <asp:DropDownList ID="DdlTimes" runat="server" DataSourceID="SqlDataSourceTime" DataTextField="Time" DataValueField="id" Height="40px" Width="130px" BackColor="DarkGray" Font-Bold="True" style="border:1px solid black;width:100%" ></asp:DropDownList>
+                            <asp:DropDownList ID="DdlTimes" runat="server" DataSourceID="SqlDataSourceTime" DataTextField="Time" DataValueField="id" Height="40px" Width="130px" BackColor="DarkGray" Font-Bold="True" style="border:1px solid black;width:100%" AutoPostBack="True" OnSelectedIndexChanged="DdlTimes_SelectedIndexChanged" ></asp:DropDownList>
                             <asp:SqlDataSource ID="SqlDataSourceTime" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand=" SELECT id, TimeStart + ' - ' + TimeEnd As Time
  FROM [dbo].[TimeSlots]"></asp:SqlDataSource>
                         </div>
                     </div>
                     <div class="row justify-content-md-center">
                         <div class="col" style="padding-top:10px;" >
-                            <asp:DropDownList ID="DdlTutors" runat="server" DataSourceID="SqlDataSource1" DataTextField="Name" DataValueField="Id" Height="40px" Width="130px" BackColor="DarkGray" Font-Bold="True" style="border:1px solid black;width:100%;"></asp:DropDownList>
+                            <asp:DropDownList ID="DdlTutors" runat="server" DataSourceID="SqlDataSource1" DataTextField="Name" DataValueField="Id" Height="40px" Width="130px" BackColor="DarkGray" Font-Bold="True" style="border:1px solid black;width:100%;" AutoPostBack="True" OnSelectedIndexChanged="DdlTutors_SelectedIndexChanged"></asp:DropDownList>
 
 
 

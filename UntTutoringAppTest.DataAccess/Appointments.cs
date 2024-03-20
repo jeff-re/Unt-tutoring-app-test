@@ -31,5 +31,30 @@ namespace UntTutoringAppTest.DataAccess
             }
             return dt;
         }
+
+
+
+
+        public static DataTable GetAvailableAppointments(int subjectId, int timeSlotId, string tutorId,String selectedDate)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = connection;
+                    cmd.CommandText = "SELECT Id,SubjectName FROM [dbo].[Subject]";
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    dt.Load(reader);
+                }
+            }
+            return dt;
+        }
+
+
+
+
     }
 }
