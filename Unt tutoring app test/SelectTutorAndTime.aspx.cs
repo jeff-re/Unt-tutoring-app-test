@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Web;
@@ -15,6 +16,12 @@ namespace Unt_tutoring_app_test
         {
             //Cal_Appoitments.SelectedDate = DateTime.Today;
             //CurrentDate = DateTime.Today;
+            if (!IsPostBack)
+            {
+                // Set the default status here
+               
+            }
+           
 
         }
         protected void Cal_Appoitments_DayRender(object sender, DayRenderEventArgs e)
@@ -49,8 +56,16 @@ namespace Unt_tutoring_app_test
             Response.Write("\n tutor");
             string SelectedTutor = DdlTutors.SelectedValue;
             Response.Write(SelectedTutor);
-            
 
+            int subjectId = 1;
+            int timeSlotId = Convert.ToInt32(DdlTimes.SelectedValue);
+            string tutorId = DdlTutors.SelectedValue;
+            DateTime selectedDate = Cal_Appoitments.SelectedDate;
+
+
+            DataTable dt = UntTutoringAppTest.DataAccess.Appointments.GetAvailableAppointments(subjectId, timeSlotId, tutorId, selectedDate);
+            GvAppointment.DataSource = dt;
+            GvAppointment.DataBind();
 
 
 
@@ -68,6 +83,16 @@ namespace Unt_tutoring_app_test
             string SelectedTutor = DdlTutors.SelectedValue;
             Response.Write(SelectedTutor);
 
+            int subjectId = 1;
+            int timeSlotId = Convert.ToInt32(DdlTimes.SelectedValue);
+            string tutorId = DdlTutors.SelectedValue;
+            DateTime selectedDate = Cal_Appoitments.SelectedDate;
+
+
+            DataTable dt = UntTutoringAppTest.DataAccess.Appointments.GetAvailableAppointments(subjectId, timeSlotId, tutorId, selectedDate);
+            GvAppointment.DataSource = dt;
+            GvAppointment.DataBind();
+
         }
 
         protected void DdlTutors_SelectedIndexChanged(object sender, EventArgs e)
@@ -82,6 +107,24 @@ namespace Unt_tutoring_app_test
             string SelectedTutor = DdlTutors.SelectedValue;
             Response.Write(SelectedTutor);
 
+            int subjectId = 1;
+            int timeSlotId = Convert.ToInt32(DdlTimes.SelectedValue);
+            string tutorId = DdlTutors.SelectedValue; 
+            DateTime selectedDate = Cal_Appoitments.SelectedDate;
+
+
+            DataTable dt = UntTutoringAppTest.DataAccess.Appointments.GetAvailableAppointments(subjectId, timeSlotId, tutorId, selectedDate);
+            GvAppointment.DataSource = dt;
+            GvAppointment.DataBind();
+
+        }
+
+        protected void GridBindTutorTimes(DataTable dt)
+        {
+            //DataTable dt = DataAccess.DrugData.GetDriverDetails(DriverID, defaultStatus);
+            //DataTable dt = UntTutoringAppTest.DataAccess.TutorManage.GetTutorAvailableTimes();
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
         }
     }
 }

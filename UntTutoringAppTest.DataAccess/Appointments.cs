@@ -35,8 +35,23 @@ namespace UntTutoringAppTest.DataAccess
 
 
 
-        public static DataTable GetAvailableAppointments(int subjectId, int timeSlotId, string tutorId,String selectedDate)
+        public static DataTable GetAvailableAppointments(int subjectId, int timeSlotId, string tutorId,DateTime selectedDate)
         {
+            
+            string Date;
+            DateTime thisDay = DateTime.Today;
+            if (selectedDate <= thisDay)
+            {
+               
+                Date = thisDay.Date.ToShortDateString();
+
+            }
+
+            else
+            {
+                Date = selectedDate.Date.ToShortDateString();
+            }
+
             DataTable dt = new DataTable();
             using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
             {
@@ -44,8 +59,18 @@ namespace UntTutoringAppTest.DataAccess
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = connection;
-                    cmd.CommandText = "SELECT Id,SubjectName FROM [dbo].[Subject]";
-
+                    cmd.CommandText = "SELECT ta.AppointDate,t.TimeStart + ' - ' + t.TimeEnd As Time " +
+                        "FROM [dbo].[TutorAvailable] AS ta " +
+                        "INNER JOIN [dbo].[TutorSubject] AS ts " +
+                        "ON ta.TutorId = ts.TutorID " +
+                        "INNER JOIN [dbo].[TimeSlots] AS t " +
+                        "ON ta.TimeSlotId = t.Id " +
+                        "WHERE ts.SubjectID = @subjectID AND ta.TimeSlotId = @timeSlotID AND ta.TutorId = '' AND ta.AppointDate = @appointmentDate ";
+                   
+                    cmd.Parameters.AddWithValue("@subjectID", subjectId);
+                    cmd.Parameters.AddWithValue("@timeSlotID", timeSlotId);
+                    cmd.Parameters.AddWithValue("@tutorID", tutorId);
+                    cmd.Parameters.AddWithValue("@appointmentDate", Date);
                     SqlDataReader reader = cmd.ExecuteReader();
                     dt.Load(reader);
                 }

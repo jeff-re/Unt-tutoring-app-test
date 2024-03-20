@@ -71,7 +71,7 @@
 
                 </div>
                 <div class="col-md-auto">
-                    <asp:GridView ID="GvAppointment" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSourceAppData" ForeColor="#333333" GridLines="None" Width="380px">
+                    <asp:GridView ID="GvAppointment" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="380px" ShowHeaderWhenEmpty="True">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:BoundField DataField="AppointDate" HeaderText="AppointDate" SortExpression="AppointDate" />
