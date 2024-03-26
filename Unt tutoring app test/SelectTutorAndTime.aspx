@@ -52,18 +52,21 @@
                     </div>
                     <div class="row justify-content-md-center">
                         <div class="col" style="padding-top:10px">
+                            <asp:Label ID="LbTime" runat="server" Text="Select Time" Font-Bold="True"></asp:Label>
                             <asp:DropDownList ID="DdlTimes" runat="server" DataSourceID="SqlDataSourceTime" DataTextField="Time" DataValueField="id" Height="40px" Width="130px" BackColor="DarkGray" Font-Bold="True" style="border:1px solid black;width:100%" AutoPostBack="True" OnSelectedIndexChanged="DdlTimes_SelectedIndexChanged" ></asp:DropDownList>
                             <asp:SqlDataSource ID="SqlDataSourceTime" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand=" SELECT id, TimeStart + ' - ' + TimeEnd As Time
- FROM [dbo].[TimeSlots]"></asp:SqlDataSource>
+ FROM [dbo].[TimeSlots] UNION SELECT '0','-- Any --'"></asp:SqlDataSource>
                         </div>
                     </div>
                     <div class="row justify-content-md-center">
                         <div class="col" style="padding-top:10px;" >
+
+                            <asp:Label ID="Label1" runat="server" Text="Select Tutor" Font-Bold="True"></asp:Label>
                             <asp:DropDownList ID="DdlTutors" runat="server" DataSourceID="SqlDataSource1" DataTextField="Name" DataValueField="Id" Height="40px" Width="130px" BackColor="DarkGray" Font-Bold="True" style="border:1px solid black;width:100%;" AutoPostBack="True" OnSelectedIndexChanged="DdlTutors_SelectedIndexChanged"></asp:DropDownList>
 
 
 
-                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT Id,LEFT(Email, CHARINDEX('@', Email) - 1) AS Name FROM [dbo].[AspNetUsers];"></asp:SqlDataSource>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT Id,LEFT(Email, CHARINDEX('@', Email) - 1) AS Name FROM [dbo].[AspNetUsers] UNION SELECT '0','-- Any --';"></asp:SqlDataSource>
 
                         </div>
                     </div>
@@ -71,11 +74,22 @@
 
                 </div>
                 <div class="col-md-auto">
-                    <asp:GridView ID="GvAppointment" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="380px" ShowHeaderWhenEmpty="True">
+                    <asp:GridView ID="GvAppointment" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="380px" ShowHeaderWhenEmpty="True" OnRowCommand="GvAppointment_RowCommand">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:BoundField DataField="AppointDate" HeaderText="AppointDate" SortExpression="AppointDate" />
                             <asp:BoundField DataField="Time" HeaderText="Time" ReadOnly="True" SortExpression="Time" />
+                            <asp:TemplateField HeaderText="Book">
+                      <ItemTemplate>
+
+                          <%--<asp:Button ID="Button1" CssClass="SubjectLink" CommandArgument='<%# Eval("AppointDate") %>' CommandName="Select" runat="server" Text="Button" />--%>
+                          <asp:LinkButton ID="LinkButtonTimes" CssClass="SubjectLink" Text='Book' CommandArgument='<%# Eval("Id") %>' CommandName="Select" runat="server">Book</asp:LinkButton>
+                      </ItemTemplate>
+
+                     
+                     <%-- <ItemStyle Font-Bold="True" HorizontalAlign="Center" VerticalAlign="Middle" BorderStyle="Double" BorderWidth="5px" />--%>
+
+                  </asp:TemplateField>
                         </Columns>
                         <EditRowStyle BackColor="#2461BF" />
                         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

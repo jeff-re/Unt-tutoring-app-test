@@ -64,7 +64,7 @@
                   <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" Visible="false" />
                   <asp:TemplateField HeaderText="SubjectName">
                       <ItemTemplate>
-                          <asp:LinkButton ID="LinkButtonSubjects" CssClass="SubjectLink" Text='<%#Eval("SubjectName") %>' CommandArgument='<%# Eval("Id") %>' CommandName="Remove" runat="server">LinkButton</asp:LinkButton>
+                          <asp:LinkButton ID="LinkButtonSubjects"  Text='<%#Eval("SubjectName") %>' CommandArgument='<%# Eval("Id") %>' CommandName="Remove" runat="server">LinkButton</asp:LinkButton>
                       </ItemTemplate>
 
                      

@@ -51,13 +51,11 @@ namespace Unt_tutoring_app_test
             
             DateTime SelectedDate = Cal_Appoitments.SelectedDate;
             string SelectedDate2 = SelectedDate.Date.ToShortDateString();
-            Response.Write(SelectedDate2);
-            Response.Write("\n time");
+           
             string SelectedTime = DdlTimes.SelectedValue;
-            Response.Write(SelectedTime);
-            Response.Write("\n tutor");
+            
             string SelectedTutor = DdlTutors.SelectedValue;
-            Response.Write(SelectedTutor);
+           
 
             int subjectId = 1;
             int timeSlotId = Convert.ToInt32(DdlTimes.SelectedValue);
@@ -77,13 +75,11 @@ namespace Unt_tutoring_app_test
         {
             DateTime SelectedDate = Cal_Appoitments.SelectedDate;
             string SelectedDate2 = SelectedDate.Date.ToShortDateString();
-            Response.Write(SelectedDate2);
-            Response.Write("\n time");
+           
             string SelectedTime = DdlTimes.SelectedValue;
-            Response.Write(SelectedTime);
-            Response.Write("\n tutor");
+            
             string SelectedTutor = DdlTutors.SelectedValue;
-            Response.Write(SelectedTutor);
+           
 
             int subjectId = 1;
             int timeSlotId = Convert.ToInt32(DdlTimes.SelectedValue);
@@ -101,13 +97,11 @@ namespace Unt_tutoring_app_test
         {
             DateTime SelectedDate = Cal_Appoitments.SelectedDate;
             string SelectedDate2 = SelectedDate.Date.ToShortDateString();
-            Response.Write(SelectedDate2);
-            Response.Write("\n time");
+           
             string SelectedTime = DdlTimes.SelectedValue;
-            Response.Write(SelectedTime);
-            Response.Write("\n tutor");
+            
             string SelectedTutor = DdlTutors.SelectedValue;
-            Response.Write(SelectedTutor);
+            
 
             int subjectId = 1;
             int timeSlotId = Convert.ToInt32(DdlTimes.SelectedValue);
@@ -127,6 +121,12 @@ namespace Unt_tutoring_app_test
             //DataTable dt = UntTutoringAppTest.DataAccess.TutorManage.GetTutorAvailableTimes();
             GridView1.DataSource = dt;
             GridView1.DataBind();
+        }
+
+        protected void GvAppointment_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int TutorAvailableId = Convert.ToInt32(e.CommandArgument);
+            Response.Redirect("~/ConfirmAppointment?Id=" + (TutorAvailableId).ToString());
         }
     }
 }

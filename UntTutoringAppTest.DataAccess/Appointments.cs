@@ -55,18 +55,94 @@ namespace UntTutoringAppTest.DataAccess
             DataTable dt = new DataTable();
             using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
             {
+                if((timeSlotId <= 0) && tutorId == "0")
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.Connection = connection;
+                        cmd.CommandText = "SELECT ta.Id,ta.AppointDate,t.TimeStart + ' - ' + t.TimeEnd As Time " +
+                            "FROM [dbo].[TutorAvailable] AS ta " +
+                            "INNER JOIN [dbo].[TutorSubject] AS ts " +
+                            "ON ta.TutorId = ts.TutorID " +
+                            "INNER JOIN [dbo].[TimeSlots] AS t " +
+                            "ON ta.TimeSlotId = t.Id " +
+                            //"WHERE ta.AppointDate = @appointmentDate ";
+                            "WHERE ts.SubjectID = @subjectID AND ta.AppointDate = @appointmentDate ";
+
+                        cmd.Parameters.AddWithValue("@subjectID", subjectId);
+                        cmd.Parameters.AddWithValue("@timeSlotID", timeSlotId);
+                        cmd.Parameters.AddWithValue("@appointmentDate", Date);
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        dt.Load(reader);
+                        return dt;
+                    }
+                }
+
+                if(timeSlotId <=0)
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.Connection = connection;
+                        cmd.CommandText = "SELECT ta.Id,ta.AppointDate,t.TimeStart + ' - ' + t.TimeEnd As Time " +
+                            "FROM [dbo].[TutorAvailable] AS ta " +
+                            "INNER JOIN [dbo].[TutorSubject] AS ts " +
+                            "ON ta.TutorId = ts.TutorID " +
+                            "INNER JOIN [dbo].[TimeSlots] AS t " +
+                            "ON ta.TimeSlotId = t.Id " +
+                            //"WHERE ta.TutorId = @tutorID AND ta.AppointDate = @appointmentDate ";
+                            "WHERE ts.SubjectID = @subjectID AND ta.TutorId = @tutorID AND ta.AppointDate = @appointmentDate ";
+
+                        cmd.Parameters.AddWithValue("@subjectID", subjectId);
+                       
+                        cmd.Parameters.AddWithValue("@tutorID", tutorId);
+                        cmd.Parameters.AddWithValue("@appointmentDate", Date);
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        dt.Load(reader);
+                        return dt;
+                    }
+
+                }
+
+                if(tutorId == "0")
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.Connection = connection;
+                        cmd.CommandText = "SELECT ta.Id,ta.AppointDate,t.TimeStart + ' - ' + t.TimeEnd As Time " +
+                            "FROM [dbo].[TutorAvailable] AS ta " +
+                            "INNER JOIN [dbo].[TutorSubject] AS ts " +
+                            "ON ta.TutorId = ts.TutorID " +
+                            "INNER JOIN [dbo].[TimeSlots] AS t " +
+                            "ON ta.TimeSlotId = t.Id " +
+                            //"WHERE ta.TimeSlotId = @timeSlotID AND ta.AppointDate = @appointmentDate ";
+                            "WHERE ts.SubjectID = @subjectID AND ta.TimeSlotId = @timeSlotID AND ta.AppointDate = @appointmentDate ";
+
+                        cmd.Parameters.AddWithValue("@subjectID", subjectId);
+                        cmd.Parameters.AddWithValue("@timeSlotID", timeSlotId);
+                        cmd.Parameters.AddWithValue("@appointmentDate", Date);
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        dt.Load(reader);
+                        return dt;
+                    }
+                }
+                
+
                 connection.Open();
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = connection;
-                    cmd.CommandText = "SELECT ta.AppointDate,t.TimeStart + ' - ' + t.TimeEnd As Time " +
+                    cmd.CommandText = "SELECT ta.Id,ta.AppointDate,t.TimeStart + ' - ' + t.TimeEnd As Time " +
                         "FROM [dbo].[TutorAvailable] AS ta " +
                         "INNER JOIN [dbo].[TutorSubject] AS ts " +
                         "ON ta.TutorId = ts.TutorID " +
                         "INNER JOIN [dbo].[TimeSlots] AS t " +
                         "ON ta.TimeSlotId = t.Id " +
-                        "WHERE ts.SubjectID = @subjectID AND ta.TimeSlotId = @timeSlotID AND ta.TutorId = '' AND ta.AppointDate = @appointmentDate ";
-                   
+                        //"WHERE ta.TimeSlotId = @timeSlotID AND ta.TutorId = @tutorID AND ta.AppointDate = @appointmentDate ";
+                        "WHERE ts.SubjectID = @subjectID AND ta.TimeSlotId = @timeSlotID AND ta.TutorId = @tutorID AND ta.AppointDate = @appointmentDate ";
+
                     cmd.Parameters.AddWithValue("@subjectID", subjectId);
                     cmd.Parameters.AddWithValue("@timeSlotID", timeSlotId);
                     cmd.Parameters.AddWithValue("@tutorID", tutorId);
