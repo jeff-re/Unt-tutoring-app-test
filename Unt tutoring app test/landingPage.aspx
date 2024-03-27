@@ -39,7 +39,7 @@
     <table align="center" style="height:400px" border="1" bgcolor="lightgray">
       <tr>
         <td align="center">
-          <h1 style="color:darkgreen;">University of North Texasle Tutoring</h1>
+          <h1 style="color:darkgreen;">University of North Texas Tutoring</h1>
         </td>
       </tr>
 

@@ -68,7 +68,7 @@ namespace UntTutoringAppTest.DataAccess
                             "INNER JOIN [dbo].[TimeSlots] AS t " +
                             "ON ta.TimeSlotId = t.Id " +
                             //"WHERE ta.AppointDate = @appointmentDate ";
-                            "WHERE ts.SubjectID = @subjectID AND ta.AppointDate = @appointmentDate ";
+                            "WHERE ts.SubjectID = @subjectID AND ta.AppointDate = @appointmentDate AND ta.IsActive = 1 ";
 
                         cmd.Parameters.AddWithValue("@subjectID", subjectId);
                         cmd.Parameters.AddWithValue("@timeSlotID", timeSlotId);
@@ -92,7 +92,7 @@ namespace UntTutoringAppTest.DataAccess
                             "INNER JOIN [dbo].[TimeSlots] AS t " +
                             "ON ta.TimeSlotId = t.Id " +
                             //"WHERE ta.TutorId = @tutorID AND ta.AppointDate = @appointmentDate ";
-                            "WHERE ts.SubjectID = @subjectID AND ta.TutorId = @tutorID AND ta.AppointDate = @appointmentDate ";
+                            "WHERE ts.SubjectID = @subjectID AND ta.TutorId = @tutorID AND ta.AppointDate = @appointmentDate AND ta.IsActive = 1 ";
 
                         cmd.Parameters.AddWithValue("@subjectID", subjectId);
                        
@@ -118,7 +118,7 @@ namespace UntTutoringAppTest.DataAccess
                             "INNER JOIN [dbo].[TimeSlots] AS t " +
                             "ON ta.TimeSlotId = t.Id " +
                             //"WHERE ta.TimeSlotId = @timeSlotID AND ta.AppointDate = @appointmentDate ";
-                            "WHERE ts.SubjectID = @subjectID AND ta.TimeSlotId = @timeSlotID AND ta.AppointDate = @appointmentDate ";
+                            "WHERE ts.SubjectID = @subjectID AND ta.TimeSlotId = @timeSlotID AND ta.AppointDate = @appointmentDate AND ta.IsActive = 1 ";
 
                         cmd.Parameters.AddWithValue("@subjectID", subjectId);
                         cmd.Parameters.AddWithValue("@timeSlotID", timeSlotId);
@@ -141,7 +141,7 @@ namespace UntTutoringAppTest.DataAccess
                         "INNER JOIN [dbo].[TimeSlots] AS t " +
                         "ON ta.TimeSlotId = t.Id " +
                         //"WHERE ta.TimeSlotId = @timeSlotID AND ta.TutorId = @tutorID AND ta.AppointDate = @appointmentDate ";
-                        "WHERE ts.SubjectID = @subjectID AND ta.TimeSlotId = @timeSlotID AND ta.TutorId = @tutorID AND ta.AppointDate = @appointmentDate ";
+                        "WHERE ts.SubjectID = @subjectID AND ta.TimeSlotId = @timeSlotID AND ta.TutorId = @tutorID AND ta.AppointDate = @appointmentDate AND ta.IsActive = 1 ";
 
                     cmd.Parameters.AddWithValue("@subjectID", subjectId);
                     cmd.Parameters.AddWithValue("@timeSlotID", timeSlotId);

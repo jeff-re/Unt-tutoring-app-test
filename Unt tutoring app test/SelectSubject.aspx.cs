@@ -18,7 +18,7 @@ namespace Unt_tutoring_app_test
 
         protected void LinkButtonSubjects_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/SelectTutorAndTime?Id=" + ((LinkButton)sender).Text);
+            Response.Redirect("~/SelectTutorAndTime?SubjectId=" + ((LinkButton)sender).Text);
 
            
 
@@ -29,7 +29,7 @@ namespace Unt_tutoring_app_test
         protected void GvSubjects_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int TutorAvailableId = Convert.ToInt32(e.CommandArgument);
-            Response.Redirect("~/SelectTutorAndTime?Id=" + (TutorAvailableId).ToString());
+            Response.Redirect("~/SelectTutorAndTime?SubjectId=" + (TutorAvailableId).ToString());
         }
     }
 
