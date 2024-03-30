@@ -45,11 +45,19 @@
       <p></p>
       <p></p>
       <tr>
-        <td 
-          <center>
-  
-          <h1 align="center" >January 12th 1:00 PM</h1>
-  
+        <td align="center"> 
+          <%--<h1 align="center" >January 12th 1:00 PM</h1>--%>
+
+            <asp:Label ID="LbDate" runat="server" align="center" Text=" dates" Font-Bold="True" Font-Size="Medium"></asp:Label>
+            <asp:Label ID="LbTimeSlot" runat="server" align="center" Text=" Time Slot" Font-Bold="True" Font-Size="Medium"></asp:Label>
+        </td>
+      </tr>
+            <tr>
+        <td align="center"> 
+          <%--<h1 align="center" >January 12th 1:00 PM</h1>--%>
+
+            <asp:Label ID="Lbtitlesubject" runat="server" align="center" Text="Subject: " Font-Bold="True" Font-Size="Medium"></asp:Label>
+            <asp:Label ID="LbSubject" runat="server" align="center" Text=" Subject" Font-Bold="True" Font-Size="Medium"></asp:Label>
         </td>
       </tr>
    

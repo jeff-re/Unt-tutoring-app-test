@@ -18,6 +18,7 @@ namespace Unt_tutoring_app_test
             {
                 subId = Convert.ToInt32(Request.QueryString["SubjectId"]);
                 DateId = Convert.ToInt32(Request.QueryString["DateId"]);
+                Display();
 
                 if ((DateId <= 0) || (subId <=0))
                 {
@@ -31,9 +32,18 @@ namespace Unt_tutoring_app_test
 
         public void Display()
         {
-            var appTime = new UntTutoringAppTest.DataContract.AppointmentsInfo();
+            //var appInfo = new UntTutoringAppTest.DataContract.AppointmentsInfo();
+            var Appointment = UntTutoringAppTest.DataAccess.ConfirmAppointment.getAppointment(DateId,subId);
+            if (Appointment != null)
+            {
+                LbDate.Text = Appointment.Date.ToShortDateString();
+                LbTimeSlot.Text = Appointment.TimeSlot.ToString();
+                LbSubject.Text = Appointment.SubjectName.ToString();
+            }
 
-            
+
+
+
 
         }
 
