@@ -15,6 +15,15 @@ namespace Unt_tutoring_app_test
     {
 
         /// <summary>
+        /// LbTitleDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbTitleDate;
+
+        /// <summary>
         /// LbDate control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace Unt_tutoring_app_test
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LbDate;
+
+        /// <summary>
+        /// LbTitleTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbTitleTime;
 
         /// <summary>
         /// LbTimeSlot control.
@@ -49,5 +67,41 @@ namespace Unt_tutoring_app_test
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LbSubject;
+
+        /// <summary>
+        /// LbTitleTutor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbTitleTutor;
+
+        /// <summary>
+        /// LbTutor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbTutor;
+
+        /// <summary>
+        /// BtnConfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnConfirm;
+
+        /// <summary>
+        /// BtnCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnCancel;
     }
 }

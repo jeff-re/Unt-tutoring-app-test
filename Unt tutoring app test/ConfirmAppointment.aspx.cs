@@ -39,6 +39,7 @@ namespace Unt_tutoring_app_test
                 LbDate.Text = Appointment.Date.ToShortDateString();
                 LbTimeSlot.Text = Appointment.TimeSlot.ToString();
                 LbSubject.Text = Appointment.SubjectName.ToString();
+                LbTutor.Text = Appointment.TutorName.ToString();
             }
 
 
@@ -47,5 +48,14 @@ namespace Unt_tutoring_app_test
 
         }
 
+        protected void BtnConfirm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void BtnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/SelectSubject", true);
+        }
     }
 }
