@@ -11,6 +11,7 @@
                 background-image: url('UNTpic2.png');
                 background-repeat: no-repeat;
                 background-attachment: fixed;
+
                 background-size: cover;
             }
         </style>
