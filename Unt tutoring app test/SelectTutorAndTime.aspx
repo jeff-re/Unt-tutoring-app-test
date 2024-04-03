@@ -120,7 +120,7 @@
         <br />
 
 
-        <table align="center" style="height: 400px" border="1" bgcolor="lightgray">
+<%--        <table align="center" style="height: 400px" border="1" bgcolor="lightgray">
             <tr>
                 <td align="center">
                     <h1 style="color: rgb(0, 123, 60);">University of North Texas</h1>
@@ -165,7 +165,7 @@
                 </td>
             </tr>
 
-        </table>
+        </table>--%>
 
 
     </body>
