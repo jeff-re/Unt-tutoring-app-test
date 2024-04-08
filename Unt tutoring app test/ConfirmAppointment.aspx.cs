@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static Unt_tutoring_app_test.WebForm4;
 
 namespace Unt_tutoring_app_test
 {
@@ -12,12 +13,18 @@ namespace Unt_tutoring_app_test
     {
         private int subId;
         private int DateId;
+
+        UntTutoringAppTest.DataContract.AppointmentsInfo appointment = new UntTutoringAppTest.DataContract.AppointmentsInfo();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 subId = Convert.ToInt32(Request.QueryString["SubjectId"]);
                 DateId = Convert.ToInt32(Request.QueryString["DateId"]);
+
+                appointment.TimeId = DateId;
+                appointment.SubjectId = subId;
                 Display();
 
                 if ((DateId <= 0) || (subId <=0))
@@ -33,13 +40,13 @@ namespace Unt_tutoring_app_test
         public void Display()
         {
             //var appInfo = new UntTutoringAppTest.DataContract.AppointmentsInfo();
-            var Appointment = UntTutoringAppTest.DataAccess.ConfirmAppointment.getAppointment(DateId,subId);
-            if (Appointment != null)
+            appointment = UntTutoringAppTest.DataAccess.ConfirmAppointment.getAppointment(DateId,subId);
+            if (appointment != null)
             {
-                LbDate.Text = Appointment.Date.ToShortDateString();
-                LbTimeSlot.Text = Appointment.TimeSlot.ToString();
-                LbSubject.Text = Appointment.SubjectName.ToString();
-                LbTutor.Text = Appointment.TutorName.ToString();
+                LbDate.Text = appointment.Date.ToShortDateString();
+                LbTimeSlot.Text = appointment.TimeSlot.ToString();
+                LbSubject.Text = appointment.SubjectName.ToString();
+                LbTutor.Text = appointment.TutorName.ToString();
             }
 
 
@@ -50,6 +57,7 @@ namespace Unt_tutoring_app_test
 
         protected void BtnConfirm_Click(object sender, EventArgs e)
         {
+            UntTutoringAppTest.DataAccess.ConfirmAppointment.Create(appointment);
 
         }
 

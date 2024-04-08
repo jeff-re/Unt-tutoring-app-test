@@ -55,5 +55,27 @@ namespace UntTutoringAppTest.DataAccess
         }
 
 
+        public static int Create(DataContract.AppointmentsInfo appointment)
+        {
+
+            using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "INSERT INTO [dbo].[Appointments]([TimeId],[StudentId],[SubjectId],[Time],[Subject],[Tutor]) output INSERTED.Id" +
+                        " VALUES (@TutorId,@TimeSlotId,@AppointDate)";
+                    //cmd.Parameters.AddWithValue("@TutorId", tutorAvailable.TutorId);
+                    //cmd.Parameters.AddWithValue("@TimeSlotId", tutorAvailable.TimeslotId);
+                    //cmd.Parameters.AddWithValue("@AppointDate", tutorAvailable.AppointDate);
+
+                    return (int)cmd.ExecuteScalar();
+                }
+            }
+
+        }
+
+
     }
 }
