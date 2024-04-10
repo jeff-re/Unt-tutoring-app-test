@@ -65,10 +65,14 @@ namespace UntTutoringAppTest.DataAccess
                 {
                     cmd.Connection = conn;
                     cmd.CommandText = "INSERT INTO [dbo].[Appointments]([TimeId],[StudentId],[SubjectId],[Time],[Subject],[Tutor]) output INSERTED.Id" +
-                        " VALUES (@TutorId,@TimeSlotId,@AppointDate)";
-                    //cmd.Parameters.AddWithValue("@TutorId", tutorAvailable.TutorId);
-                    //cmd.Parameters.AddWithValue("@TimeSlotId", tutorAvailable.TimeslotId);
-                    //cmd.Parameters.AddWithValue("@AppointDate", tutorAvailable.AppointDate);
+                        " VALUES (@TimeId,@StudentId,@SubjectId,@Time,@Subject,@Tutor)";
+                    cmd.Parameters.AddWithValue("@TimeId", appointment.TimeId);
+                    cmd.Parameters.AddWithValue("@StudentId", appointment.StudentId);
+                    cmd.Parameters.AddWithValue("@SubjectId", appointment.SubjectId);
+                    cmd.Parameters.AddWithValue("@Time", appointment.TimeSlot);
+                    cmd.Parameters.AddWithValue("@Subject", appointment.SubjectName);
+                    cmd.Parameters.AddWithValue("@Tutor", appointment.TutorName);
+
 
                     return (int)cmd.ExecuteScalar();
                 }

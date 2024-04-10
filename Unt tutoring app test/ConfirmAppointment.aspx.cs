@@ -25,6 +25,7 @@ namespace Unt_tutoring_app_test
 
                 appointment.TimeId = DateId;
                 appointment.SubjectId = subId;
+                appointment.StudentId = Convert.ToString(Session["UserId"]);
                 Display();
 
                 if ((DateId <= 0) || (subId <=0))
@@ -50,14 +51,11 @@ namespace Unt_tutoring_app_test
             }
 
 
-
-
-
         }
 
         protected void BtnConfirm_Click(object sender, EventArgs e)
         {
-            UntTutoringAppTest.DataAccess.ConfirmAppointment.Create(appointment);
+            //UntTutoringAppTest.DataAccess.ConfirmAppointment.Create(appointment);
 
         }
 
