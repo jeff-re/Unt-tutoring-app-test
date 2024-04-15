@@ -42,6 +42,9 @@
             <tr>
                 <td align="center">
                     <%--<button style="width: 100%; height: 100%;" onclick="window.open('student select subject.html', '_self')">Schedule Appointment</button>--%>
+
+                    <asp:GridView ID="GvBooked" runat="server" DataSourceID="SqlDataSourcebooked"></asp:GridView>
+                    <asp:SqlDataSource ID="SqlDataSourcebooked" runat="server"></asp:SqlDataSource>
                 </td>
             </tr>
 
