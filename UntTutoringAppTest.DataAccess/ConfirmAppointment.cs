@@ -64,7 +64,7 @@ namespace UntTutoringAppTest.DataAccess
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "INSERT INTO [dbo].[Appointments]([TimeId],[StudentId],[SubjectId],[Time],[Subject],[Tutor]) output INSERTED.Id" +
+                    cmd.CommandText = "INSERT INTO Appointments (TimeId,StudentId,SubjectId,Time,Subject,Tutor) output INSERTED.Id" +
                         " VALUES (@TimeId,@StudentId,@SubjectId,@Time,@Subject,@Tutor)";
                     cmd.Parameters.AddWithValue("@TimeId", appointment.TimeId);
                     cmd.Parameters.AddWithValue("@StudentId", appointment.StudentId);
@@ -73,11 +73,39 @@ namespace UntTutoringAppTest.DataAccess
                     cmd.Parameters.AddWithValue("@Subject", appointment.SubjectName);
                     cmd.Parameters.AddWithValue("@Tutor", appointment.TutorName);
 
+                    int success = (int)cmd.ExecuteScalar();
+                    if (success > 0)
+                    {
+                        UpdateBooked(appointment.TimeId);
 
-                    return (int)cmd.ExecuteScalar();
+                    }
+
+
+                    return success;
                 }
             }
 
+        }
+
+        public static void UpdateBooked(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = connection;
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("UPDATE [dbo].[TutorAvailable]");
+                    sb.AppendLine("SET IsBooked = 1");
+                    sb.AppendLine(" WHERE Id = @Id ");
+
+                    cmd.CommandText = sb.ToString();
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
         }
 
 

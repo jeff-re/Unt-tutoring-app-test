@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using UntTutoringAppTest.DataAccess;
 using static Unt_tutoring_app_test.WebForm4;
 
 namespace Unt_tutoring_app_test
@@ -13,8 +14,14 @@ namespace Unt_tutoring_app_test
     {
         private int subId;
         private int DateId;
+        DateTime Date;
+        string TimeSlot;
+        string Subject;
+        string Tutor;
+        string student = "testtest";
 
-        UntTutoringAppTest.DataContract.AppointmentsInfo appointment = new UntTutoringAppTest.DataContract.AppointmentsInfo();
+
+        private UntTutoringAppTest.DataContract.AppointmentsInfo appointment = new UntTutoringAppTest.DataContract.AppointmentsInfo();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,16 +30,17 @@ namespace Unt_tutoring_app_test
                 subId = Convert.ToInt32(Request.QueryString["SubjectId"]);
                 DateId = Convert.ToInt32(Request.QueryString["DateId"]);
 
+                
+
                 appointment.TimeId = DateId;
                 appointment.SubjectId = subId;
-                appointment.StudentId = Convert.ToString(Session["UserId"]);
+               // student = Convert.ToString(Session["UserId"]);
                 Display();
 
                 if ((DateId <= 0) || (subId <=0))
                 {
                     Response.Redirect("~/SelectSubject", true);
                 }
-
 
             }
 
@@ -41,13 +49,14 @@ namespace Unt_tutoring_app_test
         public void Display()
         {
             //var appInfo = new UntTutoringAppTest.DataContract.AppointmentsInfo();
-            appointment = UntTutoringAppTest.DataAccess.ConfirmAppointment.getAppointment(DateId,subId);
-            if (appointment != null)
+            var appointments = UntTutoringAppTest.DataAccess.ConfirmAppointment.getAppointment(DateId,subId);
+            if (appointments != null)
             {
-                LbDate.Text = appointment.Date.ToShortDateString();
-                LbTimeSlot.Text = appointment.TimeSlot.ToString();
-                LbSubject.Text = appointment.SubjectName.ToString();
-                LbTutor.Text = appointment.TutorName.ToString();
+                LbDate.Text = appointments.Date.ToShortDateString();
+                LbTimeSlot.Text = appointments.TimeSlot.ToString();
+                LbSubject.Text = appointments.SubjectName.ToString();
+                LbTutor.Text = appointments.TutorName.ToString();
+
             }
 
 
@@ -55,7 +64,18 @@ namespace Unt_tutoring_app_test
 
         protected void BtnConfirm_Click(object sender, EventArgs e)
         {
-            //UntTutoringAppTest.DataAccess.ConfirmAppointment.Create(appointment);
+            subId = Convert.ToInt32(Request.QueryString["SubjectId"]);
+            DateId = Convert.ToInt32(Request.QueryString["DateId"]);
+
+
+            var testapp = UntTutoringAppTest.DataAccess.ConfirmAppointment.getAppointment(DateId, subId);
+            testapp.SubjectId = subId;
+            testapp.StudentId = Convert.ToString(Session["UserId"]);
+
+
+            var test = UntTutoringAppTest.DataAccess.ConfirmAppointment.Create(testapp);
+
+            Response.Redirect("~/StudentMain", true);
 
         }
 
