@@ -234,6 +234,7 @@
     <Content Include="Unauthorize.aspx" />
     <Content Include="landingPage.aspx" />
     <Content Include="Student.aspx" />
+    <Content Include="ViewBookedAppointments.aspx" />
     <Content Include="WebForm4.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -475,6 +476,13 @@
     </Compile>
     <Compile Include="Tutormanage.aspx.designer.cs">
       <DependentUpon>Tutormanage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewBookedAppointments.aspx.cs">
+      <DependentUpon>ViewBookedAppointments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewBookedAppointments.aspx.designer.cs">
+      <DependentUpon>ViewBookedAppointments.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
