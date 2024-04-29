@@ -12,7 +12,7 @@
     <div class="row justify-content-start">
         <div class="col-4">
             <%--align="center"--%>
-          <%--  background-color: darkgray--%>
+          <%--  background-color: darkgra--%>
             <div class="subject-date" style="padding: 10px; margin: 0px;">
 
                 <asp:TextBox ID="TextBox1" runat="server"> </asp:TextBox>
