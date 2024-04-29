@@ -24,12 +24,12 @@ namespace Unt_tutoring_app_test
         protected global::System.Web.UI.WebControls.GridView GvBooked;
 
         /// <summary>
-        /// SqlDataSourceBooked control.
+        /// SqlDataSourceViewAppointments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceBooked;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceViewAppointments;
     }
 }

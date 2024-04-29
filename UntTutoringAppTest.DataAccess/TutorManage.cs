@@ -78,6 +78,7 @@ namespace UntTutoringAppTest.DataAccess
 
         public static DataTable GetTutorAvailableTimes()
         {
+            DateTime CurrentDate = DateTime.Today;
             DataTable dt = new DataTable();
             using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
             {
@@ -89,7 +90,9 @@ namespace UntTutoringAppTest.DataAccess
                         "FROM [dbo].[TutorAvailable] AS ta " +
                         "INNER JOIN [dbo].[TimeSlots] AS ts " +
                         " ON ta.TimeSlotId = ts.Id " +
-                        "WHERE ta.IsActive = 1";
+                        "WHERE ta.IsActive = 1 and ta.AppointDate >= @CurrentDate";
+                   
+                    cmd.Parameters.AddWithValue("@CurrentDate", CurrentDate);
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     dt.Load(reader);

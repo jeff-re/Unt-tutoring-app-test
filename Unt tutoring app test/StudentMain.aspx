@@ -34,7 +34,7 @@
     <tr>
       <td align="center">
 <%--        <button style="width:100%;height:100%;" onclick="window.open('student select subject.html', '_self')">Schedule Appointment</button>--%>
-          <asp:Button style="width:100%;height:100%;" ID="BtnSchedule_Appointment" runat="server" OnClick="BtnSchedule_Appointment_Click" Text="Schedule Appoointment" />
+          <asp:Button style="width:100%;height:100%;" ID="BtnSchedule_Appointment" runat="server" OnClick="BtnSchedule_Appointment_Click" Text="Schedule Appointment" />
       </td>
     </tr>
 

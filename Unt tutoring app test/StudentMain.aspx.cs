@@ -22,7 +22,7 @@ namespace Unt_tutoring_app_test
 
         protected void BtnChange_Cancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Tutormanage", true);
+            Response.Redirect("~/ViewBookedAppointments", true);
 
         }
     }

@@ -42,8 +42,36 @@
             <tr>
                 <td align="center">
                     <%--<button style="width: 100%; height: 100%;" onclick="window.open('student select subject.html', '_self')">Schedule Appointment</button>--%>
-                    <asp:GridView ID="GvBooked" runat="server" DataSourceID="SqlDataSourceBooked"></asp:GridView>
-                    <asp:SqlDataSource ID="SqlDataSourceBooked" runat="server"></asp:SqlDataSource>
+                    <asp:GridView ID="GvBooked" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal" Height="160px" Width="391px" OnRowCommand="GvBooked_RowCommand">
+                        <AlternatingRowStyle BackColor="#F7F7F7" />
+                        <Columns>
+                            <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" />
+                            <asp:BoundField DataField="AppointDate" HeaderText="AppointDate" DataFormatString="{0:MM/dd/yyyy}" SortExpression="AppointDate" />
+                            <asp:BoundField DataField="Subject" HeaderText="Subject" SortExpression="Subject" />
+                            <asp:BoundField DataField="Time" HeaderText="Time" SortExpression="Time" />
+                            <asp:BoundField DataField="Tutor" HeaderText="Tutor" SortExpression="Tutor" />
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <%-- CommandArgument='<%# Eval("Id") %>'--%>
+                                    <asp:ImageButton ImageUrl="~/Images/delete.png" runat="server" CommandArgument='<%# Eval("Id") %>' CommandName="Remove" Width="20px" Height="20px" ToolTip="Delete" />
+                                </ItemTemplate>
+
+                            </asp:TemplateField>
+                        </Columns>
+                        <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
+                        <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
+                        <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
+                        <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
+                        <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
+                        <SortedAscendingCellStyle BackColor="#F4F4FD" />
+                        <SortedAscendingHeaderStyle BackColor="#5A4C9D" />
+                        <SortedDescendingCellStyle BackColor="#D8D8F0" />
+                        <SortedDescendingHeaderStyle BackColor="#3E3277" />
+                    </asp:GridView>
+                    <asp:SqlDataSource ID="SqlDataSourceViewAppointments" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT ta.AppointDate, a.Subject, a.Time, a.Tutor 
+FROM [Appointments] as a
+INNER JOIN [dbo].[TutorAvailable] AS ta
+	ON a.TimeId = ta.Id"></asp:SqlDataSource>
                 </td>
             </tr>
 

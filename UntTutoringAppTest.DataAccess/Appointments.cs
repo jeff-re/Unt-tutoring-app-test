@@ -68,7 +68,7 @@ namespace UntTutoringAppTest.DataAccess
                             "INNER JOIN [dbo].[TimeSlots] AS t " +
                             "ON ta.TimeSlotId = t.Id " +
                             //"WHERE ta.AppointDate = @appointmentDate ";
-                            "WHERE ts.SubjectID = @subjectID AND ta.AppointDate = @appointmentDate AND ta.IsActive = 1 ";
+                            "WHERE ts.SubjectID = @subjectID AND ta.AppointDate = @appointmentDate AND ta.IsActive = 1 AND ta.IsBooked = 0 ";
 
                         cmd.Parameters.AddWithValue("@subjectID", subjectId);
                         cmd.Parameters.AddWithValue("@timeSlotID", timeSlotId);
@@ -92,7 +92,7 @@ namespace UntTutoringAppTest.DataAccess
                             "INNER JOIN [dbo].[TimeSlots] AS t " +
                             "ON ta.TimeSlotId = t.Id " +
                             //"WHERE ta.TutorId = @tutorID AND ta.AppointDate = @appointmentDate ";
-                            "WHERE ts.SubjectID = @subjectID AND ta.TutorId = @tutorID AND ta.AppointDate = @appointmentDate AND ta.IsActive = 1 ";
+                            "WHERE ts.SubjectID = @subjectID AND ta.TutorId = @tutorID AND ta.AppointDate = @appointmentDate AND ta.IsActive = 1 AND ta.IsBooked = 0 ";
 
                         cmd.Parameters.AddWithValue("@subjectID", subjectId);
                        
@@ -118,7 +118,7 @@ namespace UntTutoringAppTest.DataAccess
                             "INNER JOIN [dbo].[TimeSlots] AS t " +
                             "ON ta.TimeSlotId = t.Id " +
                             //"WHERE ta.TimeSlotId = @timeSlotID AND ta.AppointDate = @appointmentDate ";
-                            "WHERE ts.SubjectID = @subjectID AND ta.TimeSlotId = @timeSlotID AND ta.AppointDate = @appointmentDate AND ta.IsActive = 1 ";
+                            "WHERE ts.SubjectID = @subjectID AND ta.TimeSlotId = @timeSlotID AND ta.AppointDate = @appointmentDate AND ta.IsActive = 1 AND ta.IsBooked = 0 ";
 
                         cmd.Parameters.AddWithValue("@subjectID", subjectId);
                         cmd.Parameters.AddWithValue("@timeSlotID", timeSlotId);
@@ -141,7 +141,7 @@ namespace UntTutoringAppTest.DataAccess
                         "INNER JOIN [dbo].[TimeSlots] AS t " +
                         "ON ta.TimeSlotId = t.Id " +
                         //"WHERE ta.TimeSlotId = @timeSlotID AND ta.TutorId = @tutorID AND ta.AppointDate = @appointmentDate ";
-                        "WHERE ts.SubjectID = @subjectID AND ta.TimeSlotId = @timeSlotID AND ta.TutorId = @tutorID AND ta.AppointDate = @appointmentDate AND ta.IsActive = 1 ";
+                        "WHERE ts.SubjectID = @subjectID AND ta.TimeSlotId = @timeSlotID AND ta.TutorId = @tutorID AND ta.AppointDate = @appointmentDate AND ta.IsActive = 1 AND ta.IsBooked = 0 ";
 
                     cmd.Parameters.AddWithValue("@subjectID", subjectId);
                     cmd.Parameters.AddWithValue("@timeSlotID", timeSlotId);
@@ -152,6 +152,50 @@ namespace UntTutoringAppTest.DataAccess
                 }
             }
             return dt;
+        }
+
+
+        public static DataTable GetBookedAppointment(string studentId)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = connection;
+                    cmd.CommandText = "SELECT ta.AppointDate, a.Subject, a.Time, a.Tutor, a.Id " +
+                        "FROM [Appointments] as a INNER JOIN [dbo].[TutorAvailable] AS ta " +
+                        "   ON a.TimeId = ta.Id " +
+                        "Where a.StudentId = @studentId and a.IsBooked = 1";
+
+                    cmd.Parameters.AddWithValue("@studentId", studentId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    dt.Load(reader);
+                }
+            }
+            return dt;
+        }
+
+        public static void UpdateApptBooked(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = connection;
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("UPDATE [dbo].[Appointments]");
+                    sb.AppendLine("SET IsBooked = 0");
+                    sb.AppendLine(" WHERE Id = @Id ");
+
+                    cmd.CommandText = sb.ToString();
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
         }
 
 
